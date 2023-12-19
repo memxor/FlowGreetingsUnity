@@ -6,14 +6,14 @@ public class Cadence : MonoBehaviour
     public static Cadence Instance { get; private set; }
 
     [Header("Contracts")]
-    public CadenceContractAsset profile;
+    public CadenceContractAsset greeting;
 
     [Header("Transactions")]
-    public CadenceTransactionAsset createUserProfile;
-    public CadenceTransactionAsset changeUsername;
+    public CadenceTransactionAsset createGreeting;
+    public CadenceTransactionAsset changeGreeting;
 
     [Header("Scripts")]
-    public CadenceScriptAsset readUserProfile;
+    public CadenceScriptAsset readGreeting;
 
     void Awake()
     {

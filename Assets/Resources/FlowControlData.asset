@@ -27,6 +27,6 @@ MonoBehaviour:
     - Address
     - Private Key
     infoValues:
-    - 0xb67c73ff54a4c730
-    - bf47aaf6c037333522f403e099973da80fb73876aff60c6a1dda4e13f153fbf6
+    - 0x3befbef809c358a2
+    - b92e720190d2d4acc7d5a329593b5ddbaeb405c10e633ecdab006cea3a9438b4
     _gatewayName: Flow Testnet

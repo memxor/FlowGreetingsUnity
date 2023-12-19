@@ -31,10 +31,10 @@ public class FlowHandler : MonoBehaviour
         walletProvider.Init(new WalletConnectConfig
         {
             ProjectId = "c5a0e570828c856d8d6908a95e64d40c",
-            ProjectDescription = "Dungeon Flow is a game developed for Flow Hackathon",
+            ProjectDescription = "Flow Greetings Example",
             ProjectIconUrl = "https://walletconnect.com/meta/favicon.ico",
-            ProjectName = "Dungeon Flow",
-            ProjectUrl = "https://linktr.ee/intotheverse",
+            ProjectName = "Hello Flow",
+            ProjectUrl = "",
             QrCodeDialogPrefab = qrCodeCustomPrefab,
             WalletSelectDialogPrefab = walletSelectCustomPrefab
         });
@@ -76,20 +76,20 @@ public class FlowHandler : MonoBehaviour
         }
     }
 
-    public TMP_InputField CreateUserNameText;
-    public TextMeshProUGUI CreateProfileInfoText;
+    public TMP_InputField CreateGreetingText;
+    public TextMeshProUGUI CreateGreetingInfoText;
 
-    public void CreateNewUser()
+    public void CreateGreeting()
     {
-        StartCoroutine(CallNewUserTransaction(CreateUserNameText.text));
+        StartCoroutine(CallCreateGreetingTransaction(CreateGreetingText.text));
     }
 
-    private IEnumerator CallNewUserTransaction(string name)
+    private IEnumerator CallCreateGreetingTransaction(string greeting)
     {
         var txResponse = Transactions.SubmitAndWaitUntilSealed
         (
-            Cadence.Instance.createUserProfile.text,
-            Convert.ToCadence(name, "String")
+            Cadence.Instance.createGreeting.text,
+            Convert.ToCadence(greeting, "String")
         );
 
         yield return new WaitUntil(() => txResponse.IsCompleted);
@@ -98,30 +98,30 @@ public class FlowHandler : MonoBehaviour
 
         if (txResult.Error != null)
         {
-            CreateProfileInfoText.text = txResult.ErrorMessage;
+            CreateGreetingInfoText.text = txResult.ErrorMessage;
             yield break;
         }
         else
         {
-            CreateProfileInfoText.text = "New Profile Created!";
+            CreateGreetingInfoText.text = "New Greeting Created!";
             yield break;
         }
     }
 
-    public TMP_InputField NewUserNameText;
-    public TextMeshProUGUI NewProfileInfoText;
+    public TMP_InputField ChangeGreetingText;
+    public TextMeshProUGUI ChangeGreetingInfoText;
 
-    public void UpdateUserName()
+    public void ChangeGreeting()
     {
-        StartCoroutine(CallUpdateUsernameTransaction(NewUserNameText.text));
+        StartCoroutine(CallChangeGreetingTransaction(ChangeGreetingText.text));
     }
 
-    private IEnumerator CallUpdateUsernameTransaction(string name)
+    private IEnumerator CallChangeGreetingTransaction(string greeting)
     {
         var txResponse = Transactions.SubmitAndWaitUntilSealed
         (
-            Cadence.Instance.changeUsername.text,
-            Convert.ToCadence(name, "String")
+            Cadence.Instance.changeGreeting.text,
+            Convert.ToCadence(greeting, "String")
         );
 
         yield return new WaitUntil(() => txResponse.IsCompleted);
@@ -130,26 +130,26 @@ public class FlowHandler : MonoBehaviour
 
         if (txResult.Error != null)
         {
-            NewProfileInfoText.text = txResult.ErrorMessage;
+            ChangeGreetingInfoText.text = txResult.ErrorMessage;
             yield break;
         }
         else
         {
-            NewProfileInfoText.text = "Username Changed!";
+            ChangeGreetingInfoText.text = "Greeting Changed!";
             yield break;
         }
     }
 
-    public TextMeshProUGUI ReadProfileInfoText;
-    public void ReadProfileValue()
+    public TextMeshProUGUI ReadGreetingInfoText;
+    public void ReadGreeting()
     {
-        StartCoroutine(ExecuteReadProfileScript());
+        StartCoroutine(ExecuteReadGreetingScript());
     }
 
-    private IEnumerator ExecuteReadProfileScript()
+    private IEnumerator ExecuteReadGreetingScript()
     {
         var scpRespone = scriptsExecutionAccount.ExecuteScript(
-            Cadence.Instance.readUserProfile.text,
+            Cadence.Instance.readGreeting.text,
             Convert.ToCadence(walletAddress, "Address")
         );
 
@@ -158,21 +158,20 @@ public class FlowHandler : MonoBehaviour
 
         if (scpResult.Error != null)
         {
-            ReadProfileInfoText.text = scpResult.Error.Message;
+            ReadGreetingInfoText.text = scpResult.Error.Message;
             yield break;
         }
         else
         {
             ScriptResponseStruct response = Convert.FromCadence<ScriptResponseStruct>(scpResult.Value);
-            ReadProfileInfoText.text = $"ID: {response.id}, Name: {response.name}, Address: {response.address}";
+            ReadGreetingInfoText.text = $"Greeting Number: {response.greetingNumber}, Greeting: {response.greeting}";
             yield break;
         }
     }
 
     public struct ScriptResponseStruct
     {
-        public System.UInt64 id;
-        public string name;
-        public string address;
+        public System.UInt64 greetingNumber;
+        public string greeting;
     }
 }
