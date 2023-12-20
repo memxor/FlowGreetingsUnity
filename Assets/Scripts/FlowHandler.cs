@@ -76,38 +76,6 @@ public class FlowHandler : MonoBehaviour
         }
     }
 
-    public TMP_InputField CreateGreetingText;
-    public TextMeshProUGUI CreateGreetingInfoText;
-
-    public void CreateGreeting()
-    {
-        StartCoroutine(CallCreateGreetingTransaction(CreateGreetingText.text));
-    }
-
-    private IEnumerator CallCreateGreetingTransaction(string greeting)
-    {
-        var txResponse = Transactions.SubmitAndWaitUntilSealed
-        (
-            Cadence.Instance.createGreeting.text,
-            Convert.ToCadence(greeting, "String")
-        );
-
-        yield return new WaitUntil(() => txResponse.IsCompleted);
-
-        var txResult = txResponse.Result;
-
-        if (txResult.Error != null)
-        {
-            CreateGreetingInfoText.text = txResult.ErrorMessage;
-            yield break;
-        }
-        else
-        {
-            CreateGreetingInfoText.text = "New Greeting Created!";
-            yield break;
-        }
-    }
-
     public TMP_InputField ChangeGreetingText;
     public TextMeshProUGUI ChangeGreetingInfoText;
 
@@ -163,15 +131,9 @@ public class FlowHandler : MonoBehaviour
         }
         else
         {
-            ScriptResponseStruct response = Convert.FromCadence<ScriptResponseStruct>(scpResult.Value);
-            ReadGreetingInfoText.text = $"Greeting Number: {response.greetingNumber}, Greeting: {response.greeting}";
+            string response = Convert.FromCadence<string>(scpResult.Value);
+            ReadGreetingInfoText.text = response;
             yield break;
         }
-    }
-
-    public struct ScriptResponseStruct
-    {
-        public System.UInt64 greetingNumber;
-        public string greeting;
     }
 }

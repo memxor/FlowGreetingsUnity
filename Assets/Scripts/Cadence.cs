@@ -9,7 +9,6 @@ public class Cadence : MonoBehaviour
     public CadenceContractAsset greeting;
 
     [Header("Transactions")]
-    public CadenceTransactionAsset createGreeting;
     public CadenceTransactionAsset changeGreeting;
 
     [Header("Scripts")]

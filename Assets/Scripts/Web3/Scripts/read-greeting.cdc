@@ -1,7 +1,6 @@
-import Greetings from 0x0687bd376fdc0bbf;
+import HelloWorld from 0x0687bd376fdc0bbf;
 
-pub fun main(add: Address): Greetings.GreetingInfo
+pub fun main(add: Address): String
 {
-  let publicCap = getAccount(add).getCapability(Greetings.publicGreetingsStoragePath).borrow<&Greetings.Greeting{Greetings.IGreetingPublic}>() ?? panic("Can't find public path!");
-  return publicCap.getGreeting();
+  return HelloWorld.greeting;
 }
