@@ -17,16 +17,13 @@ Open the Project using Unity (recommended 2022.3.8f1)
 
 ## 🏃 Checkpoint 2: Run it
 # Scan the QR code to Sign In
-![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/77539bfb-d5db-4632-b9a4-bd7a78c90416)
-
-# Creating a new Greeting
-![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/b2bf0770-5893-4e18-a93d-ef6da0f25be8)
+![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/a774d1c9-252f-4417-80a4-e50f94ca0fba)
 
 # Read Current Greeting
-![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/fb1a08b3-93ea-432a-a4bb-8ebc7e9ed45d)
+![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/7122d8e4-018a-4ef8-a489-0dc71ae5a83a)
 
 # Update the Greeting
-![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/6f6b47ab-2247-41f0-ab22-a343b40ef4b8)
+![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/6f3f3b02-f9d4-46c0-bea5-e5d0f9113e90)
 
 # Read Updated Greeting
-![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/a03c0c42-9edd-46ef-8a62-13fe0403afb1)
+![image](https://github.com/memxor/FlowGreetingsUnity/assets/48633453/cb832301-d747-45fa-8f58-613a7c7e26f1)
